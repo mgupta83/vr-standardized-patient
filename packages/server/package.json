@@ -1,0 +1,31 @@
+{
+  "name": "@vr-sp/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.7",
+    "@hono/zod-validator": "^0.4.3",
+    "@vr-sp/shared": "workspace:*",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.7",
+    "hono": "^4.7.4",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.11.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.8",
+    "@types/node": "^22.13.9",
+    "tsx": "^4.19.3",
+    "typescript": "*"
+  }
+}
