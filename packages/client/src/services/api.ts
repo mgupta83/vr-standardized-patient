@@ -1,4 +1,4 @@
-import type { AuthResponse, LoginRequest, RegisterRequest } from '@vr-sp/shared';
+import type { AuthResponse, LoginRequest, RegisterRequest, Scenario } from '@vr-sp/shared';
 
 const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:3001';
 
@@ -38,13 +38,16 @@ export const api = {
   },
   scenarios: {
     list: (token: string, page = 1, pageSize = 10) =>
-      authRequest<{ data: unknown[]; total: number }>(`/api/scenarios?page=${page}&pageSize=${pageSize}`, token),
-    get: (token: string, id: string) => authRequest<unknown>(`/api/scenarios/${id}`, token),
+      authRequest<{ data: Scenario[]; total: number }>(
+        `/api/scenarios?page=${page}&pageSize=${pageSize}`,
+        token,
+      ),
+    get: (token: string, id: string) => authRequest<Scenario>(`/api/scenarios/${id}`, token),
   },
   sessions: {
     list: (token: string) => authRequest<unknown[]>('/api/sessions', token),
     start: (token: string, scenarioId: string) =>
-      authRequest<unknown>('/api/sessions/start', token, {
+      authRequest<{ id: string }>('/api/sessions/start', token, {
         method: 'POST',
         body: JSON.stringify({ scenarioId }),
         headers: { 'Content-Type': 'application/json' },

@@ -27,7 +27,11 @@ auth.post('/register', zValidator('json', registerSchema), async (c) => {
     return c.json({ error: 'Conflict', message: 'Email already in use', statusCode: 409 }, 409);
   }
 
-  const user = await User.create(body);
+  // The very first registered user becomes an admin automatically
+  const userCount = await User.countDocuments();
+  const role = userCount === 0 ? 'admin' : (body.role ?? 'student');
+
+  const user = await User.create({ ...body, role });
   const userPublic = user.toJSON() as {
     id: string;
     email: string;
