@@ -46,6 +46,30 @@ vr-standardized-patient/
 - **Node.js ≥ 20** — [nodejs.org](https://nodejs.org)
 - **pnpm ≥ 9** — `npm install -g pnpm`
 - **MongoDB** — local instance or [MongoDB Atlas](https://www.mongodb.com/atlas)
+```bash
+## Setup Local Instance of MongoDB
+
+
+# 1. Ensure Homebrew and Xcode Command Line Tools are installed.
+# If you don't have Xcode command-line tools, run: 
+xcode-select --install.
+# If you don't have Homebrew, follow the instructions on the official Homebrew website to install it.
+
+# 2. Tap the official MongoDB Homebrew repository:
+brew tap mongodb/brew
+
+# 3. Update Homebrew to ensure all formulas are current:
+brew update
+
+# 4. Install MongoDB Community Edition. You can specify a version (e.g., @7.0 for version 7.0), or install the latest supported version:
+brew install mongodb-community@7.0
+
+# 5. Start the MongoDB service:
+brew services start mongodb-community@7.0
+
+# 6. Verify the service is running:
+brew services list
+```
 
 > **WebXR note**: The VR scene runs natively in VR headset browsers (Meta Quest, etc.) or in desktop browsers without a headset (desktop fallback 3D view). WebXR requires **HTTPS** or `localhost`.
 
